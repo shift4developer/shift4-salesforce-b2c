@@ -1,0 +1,20 @@
+{
+    "hooks": [
+        {
+            "name": "app.payment.processor.shift4_credit",
+            "script": "./cartridge/scripts/hooks/payment/processor/shift4Credit.js"
+        },
+        {
+            "name": "app.payment.form.processor.shift4_credit",
+            "script": "./cartridge/scripts/hooks/payment/form/processor/shift4CreditForm.js"
+        },
+        {
+            "name": "dw.extensions.applepay.getRequest",
+            "script": "./cartridge/scripts/hooks/payment/processor/shift4ApplePay.js"
+        },
+        {
+            "name": "dw.extensions.applepay.paymentAuthorized.authorizeOrderPayment",
+            "script": "./cartridge/scripts/hooks/payment/processor/shift4ApplePay.js"
+        }
+    ]
+}

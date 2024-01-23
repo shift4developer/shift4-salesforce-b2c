@@ -1,0 +1,12 @@
+<isset name="symbols" value="${URLUtils.staticURL('/icons/utility-sprite/svg/symbols.svg')}" scope="page"/>
+<div class="slds-notify slds-notify_alert slds-alert_error" role="alert">
+    <span class="slds-assistive-text">error</span>
+    <span class="slds-icon_container slds-icon-utility-error slds-m-right_x-small" title="Error">
+        <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+            <use xlink:href="${symbols}#error"></use>
+        </svg>
+    </span>
+    <h2 class="slds-var-p-vertical_large">
+        ${pdict.error}
+    </h2>
+</div>

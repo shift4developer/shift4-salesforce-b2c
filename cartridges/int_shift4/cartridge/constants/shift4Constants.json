@@ -1,0 +1,56 @@
+{
+    "NAMESPACE_API": "shift4payments__",
+    "SHIFT4_DEV_DOMAIN": "https://dev.shift4.com",
+    "ENDPOINTS": {
+        "APPLE_PAY_VERIFICATION": "/.well-known/apple-developer-merchantid-domain-association"
+    },
+    "SECRET_PREFERENCES": ["shift4payments__liveSecretKey", "shift4payments__testSecretKey"],
+    "OUTBOUND_PREFERENCES": [
+        "shift4payments__liveSecretKey",
+        "shift4payments__livePublicKey",
+        "shift4payments__testPublicKey",
+        "shift4payments__testSecretKey",
+        "shift4payments__environment"
+    ],
+    "PAYMENT_PROCESSORS": {
+        "SHIFT4_CREDIT": "SHIFT4_CREDIT",
+        "SHIFT4_APM": "SHIFT4_APM"
+    },
+    "PAYMENT_PROCESSOR_SUPPORT": {
+        "SHIFT4_CREDIT": ["CREDIT_CARD"],
+        "SHIFT4_APM": ["DW_APPLE_PAY"]
+    },
+    "MODE": {
+        "LIVE": "Live",
+        "TEST": "Test"
+    },
+    "BLUR_CHAR": "*",
+    "CARD_FIELDS": [
+        "number",
+        "cardholderName",
+        "expMonth",
+        "expYear",
+        "cvc",
+        "addressLine1",
+        "addressLine2",
+        "addressCity",
+        "addressState",
+        "addressZip",
+        "addressCountry",
+        "fraudCheckData"
+    ],
+    "SECRET_FIELDS": [
+        "card",
+        "paymentMethod",
+        "clientObjectId",
+        "number",
+        "cvc",
+        "addressLine1",
+        "addressLine2",
+        "line1",
+        "line2",
+        "ipAddress",
+        "email",
+        "id"
+    ]
+}

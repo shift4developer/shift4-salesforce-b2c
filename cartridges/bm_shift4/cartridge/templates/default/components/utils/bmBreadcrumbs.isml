@@ -1,0 +1,12 @@
+<div class="row hidden-xs-down" id="bm-breadcrumb">
+    <isloop items="${pdict.breadcrumbs}" var="breadcrumbValue" status="loopState">
+        <isif condition="${loopState.last}">
+            ${breadcrumbValue.htmlValue}
+        <iselse/>
+            <a class="breadcrumb" href="${breadcrumbValue.url}">
+                ${breadcrumbValue.htmlValue}
+            </a>
+            &nbsp;>&nbsp;
+        </isif>
+    </isloop>
+</div>

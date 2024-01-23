@@ -1,0 +1,425 @@
+<isdecorate template="application/MenuFrame">
+    <iscontent type="text/html" charset="UTF-8" />
+    <isinclude template="components/utils/bmBreadcrumbs" />
+    <isset name="symbols" value="${URLUtils.staticURL('/icons/utility-sprite/svg/symbols.svg')}" scope="page" />
+
+    <iscomment>
+        --------------------
+        LOAD STATIC ASSETS
+        --------------------
+    </iscomment>
+    <script>
+        const pageResponseData = JSON.parse(`<isprint value="${pdict.responseData}" encoding="off" />`);
+    </script>
+    <script src="${URLUtils.staticURL('/js/shift4Utils.js')}"></script>
+    <script src="${URLUtils.staticURL('/js/shift4Component.js')}"></script>
+    <script defer="defer" src="${URLUtils.staticURL('/js/shift4Setup.js')}"></script>
+    <link rel="stylesheet" type="text/css" href="${URLUtils.staticURL('/css/shift4Setup.css')}" />
+    <link rel="stylesheet" type="text/css" href="${URLUtils.staticURL('/css/salesforce-lightning-design-system.min.css')}" />
+
+    <iscomment>
+        ------------------------
+        SETUP ASSISTANT CONTENT
+        ------------------------
+    </iscomment>
+    <div id="shift4_setup" class="slds-text-align_center">
+        <iscomment>
+            CONTENT
+        </iscomment>
+        <div class="shift4_setup-container">
+            <iscomment>
+                ERROR BANNER
+            </iscomment>
+            <div id="shift4_error" class="slds-hide slds-var-m-bottom_large">
+                <div class="slds-notify slds-notify_alert slds-alert_error slds-grid" role="alert">
+                    <span class="slds-assistive-text">${Resource.msg('assistive.text.error', 'bm_shift4', 'Error')}</span>
+                    <span class="slds-icon_container slds-icon-utility-error slds-m-right_x-small slds-col slds-grow-none" title="Error">
+                        <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+                            <use xlink:href="${symbols}#error"></use>
+                        </svg>
+                    </span>
+                    <h2 class="slds-var-p-vertical_x-small slds-text-heading_x-small slds-col">
+                        ${pdict.error}
+                    </h2>
+                    <div class="slds-notify__close">
+                        <button class="slds-button slds-button_icon" onclick="shift4Setup.handleCloseError()">
+                            <span class="slds-assistive-text">${Resource.msg('assistive.text.close', 'bm_shift4', 'Close')}</span>
+                            <svg class="slds-button__icon" aria-hidden="true">
+                                <use xlink:href="${symbols}#close"></use>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <iscomment>
+                WARNING BANNER
+            </iscomment>
+            <div id="shift4_warning" class="slds-hide slds-var-m-bottom_large">
+                <div class="slds-notify slds-notify_alert slds-alert_warning slds-grid" role="alert">
+                    <span class="slds-assistive-text">${Resource.msg('assistive.text.warning', 'bm_shift4', 'Warning')}</span>
+                    <span class="slds-icon_container slds-icon-utility-warning slds-m-right_x-small slds-col slds-grow-none" title="Warning">
+                        <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+                            <use xlink:href="${symbols}#warning"></use>
+                        </svg>
+                    </span>
+                    <h2 class="slds-var-p-vertical_x-small slds-text-heading_x-small slds-col">
+                        ${pdict.warning}
+                    </h2>
+                    <div class="slds-notify__close">
+                        <button class="slds-button slds-button_icon" onclick="shift4Setup.handleCloseWarning()">
+                            <span class="slds-assistive-text">${Resource.msg('assistive.text.close', 'bm_shift4', 'Close')}</span>
+                            <svg class="slds-button__icon" aria-hidden="true">
+                                <use xlink:href="${symbols}#close"></use>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <iscomment>
+                SPINNER
+            </iscomment>
+            <div id="shift4_spinner" class="slds-hide">
+                <isinclude template="components/slds/spinner" />
+            </div>
+            <iscomment>
+                SETUP ASSISTANT
+            </iscomment>
+            <div class="slds-grid shift4_setup-box slds-grid_vertical">
+                <div class="slds-col">
+                    <img class="shift4_logo slds-var-m-vertical_large" src="${URLUtils.staticURL('/images/shift4-logo2.png')}" alt="Shift4 Logo" />
+                </div>
+                <div class="slds-col shift4_settings-col">
+                    <div class="shift4-box">
+                        <div class="shift4-settings-box">
+                            <div class="slds-text-align_left">
+
+                                <div class="shift4-production slds-is-relative">
+
+                                    <div class="slds-p-bottom_medium">
+                                        <h2 class="slds-text-heading_small">${Resource.msg('setup.outbound.live.title', 'bm_shift4', '')}</h2>
+                                        <div class="slds-var-m-top_xx-small">${Resource.msg('setup.outbound.live.subtitle', 'bm_shift4', '')}</div>
+                                    </div>
+    
+    
+                                    <div class="slds-form-element slds-p-bottom_x-small">
+                                        <label class="slds-form-element__label" for="shift4payments__livePublicKey">
+                                            ${Resource.msg('setup.outbound.live.pk.title', 'bm_shift4', '')}
+                                        </label>
+                                        <div class="slds-form-element__control">
+                                            <input
+                                                type="text"
+                                                id="shift4payments__livePublicKey"
+                                                name="shift4payments__livePublicKey"
+                                                aria-describedby="shift4payments__livePublicKey"
+                                                pattern="(pk_live_).{24,}"
+                                                data-mode="live"
+                                                data-type="p"
+                                                class="slds-input"
+                                                required="true"
+                                                onchange="shift4Setup.handleChangeText(event)"
+                                                onfocus="shift4Setup.handleFocusSelectText(event)"
+                                            />
+                                            <div id="error" class="slds-text-color_error slds-hide"></div>
+                                        </div>
+                                    </div>
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__label" for="shift4payments__liveSecretKey">
+                                            ${Resource.msg('setup.outbound.live.sk.title', 'bm_shift4', '')}
+                                        </label>
+                                        <div class="slds-form-element__control">
+                                            <input
+                                                type="text"
+                                                class="slds-input"
+                                                id="shift4payments__liveSecretKey"
+                                                name="shift4payments__liveSecretKey"
+                                                aria-describedby="shift4payments__liveSecretKey"
+                                                pattern="(sk_live_).{24,}"
+                                                data-mode="live"
+                                                data-type="s"
+                                                onchange="shift4Setup.handleChangeText(event)"
+                                                onfocus="shift4Setup.handleFocusSelectText(event)"
+                                                required="true"
+                                            />
+                                            <div class="slds-text-color_error slds-hide"></div>
+                                        </div>
+                                    </div>
+    
+                                    <div class="slds-grid slds-grid_vertical-align-center slds-gutters_direct-xx-small slds-var-m-top_small">
+                                        <div class="slds-col">
+    
+                                                <div
+                                                    id="shift4_liveConnectorStatus"
+                                                    class="slds-scoped-notification slds-scoped-notification_light slds-grid slds-grid_align-center slds-grid_vertical-align-center slds-var-p-vertical_x-small"
+                                                    role="status">
+                                                    <div class="spinner slds-hide">
+                                                        <isinclude template="components/slds/spinner" />
+                                                    </div>
+                                                    <div class="slds-col slds-no-flex">
+                                                        <span id="liveAuthAssist" class="slds-assistive-text">
+                                                            <iscomment>
+                                                                "Connected" or "Not Connected"
+                                                            </iscomment>
+                                                        </span>
+                                                        <span id="liveAuthIcon">
+                                                            <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+                                                                <use xlink:href="${symbols}#success"></use>
+                                                            </svg>
+                                                        </span>
+                                                    </div>
+                                                    <div class="slds-col">
+                                                        <p id="liveAuthLabel">
+                                                            <iscomment>
+                                                                "Connected" or "Not Connected"
+                                                            </iscomment>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="slds-col slds-no-flex">
+                                                <button class="slds-button" id="shift4_liveModeAuth" data-mode="live" onclick="shift4Setup.handleClickAuthButton(event)">
+                                                        <iscomment>
+                                                            "Connect" or "Disconnect"
+                                                        </iscomment>
+                                                </button>
+                                            </div>
+                                    </div>
+
+                                    <div id="shift4_liveDisconnectConfirmationBox" class="shift4-disconnect-confirmation slds-is-absolute slds-hide">
+                                        <p class="slds-p-bottom_medium">
+                                            ${Resource.msg('setup.outbound.live.disconnect.confirmation', 'bm_shift4', '')}
+                                        </p>
+                                        <div class=shift4-authorization-actions>
+                                            <button class="slds-button" data-mode="live" onclick="shift4Setup.handleCancelDisconnect(event)">
+                                                ${Resource.msg('button.label.cancel', 'bm_shift4', '')}
+                                            </button>
+                                            <button class="slds-button slds-button_destructive" data-mode="live" onclick="shift4Setup.handleConfirmDisconnect(event)">
+                                                ${Resource.msg('button.label.disconnect', 'bm_shift4', '')}
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="slds-border_top slds-p-top_large slds-m-top_large slds-text-align_left">
+
+                                <div class="shift4-testing slds-is-relative">
+
+                                    <div class="slds-p-bottom_medium">
+                                        <h2 class="slds-text-heading_small">${Resource.msg('setup.outbound.test.title', 'bm_shift4', '')}</h2>
+                                        <div class="slds-var-m-top_xx-small">${Resource.msg('setup.outbound.test.subtitle', 'bm_shift4', '')}</div>
+                                    </div>
+    
+                                    <div class="slds-form-element slds-p-bottom_x-small">
+                                        <label class="slds-form-element__label" for="shift4payments__testPublicKey">
+                                            ${Resource.msg('setup.outbound.test.pk.title', 'bm_shift4', '')}
+                                        </label>
+                                        <div class="slds-form-element__control">
+                                            <input
+                                                type="text"
+                                                id="shift4payments__testPublicKey"
+                                                name="shift4payments__testPublicKey"
+                                                aria-describedby="shift4payments__testPublicKey"
+                                                pattern="(pk_test_).{24,}"
+                                                data-mode="test"
+                                                data-type="p"
+                                                class="slds-input"
+                                                required="true"
+                                                onchange="shift4Setup.handleChangeText(event)"
+                                                onfocus="shift4Setup.handleFocusSelectText(event)"
+                                            />
+                                            <div class="slds-text-color_error slds-hide"></div>
+                                        </div>
+                                    </div>
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__label" for="shift4payments__testSecretKey">
+                                            ${Resource.msg('setup.outbound.test.sk.title', 'bm_shift4', '')}
+                                        </label>
+                                        <div class="slds-form-element__control">
+                                            <input
+                                                type="text"
+                                                id="shift4payments__testSecretKey"
+                                                name="shift4payments__testSecretKey"
+                                                aria-describedby="shift4payments__testSecretKey"
+                                                pattern="(sk_test_).{24,}"
+                                                data-mode="test"
+                                                data-type="s"
+                                                class="slds-input"
+                                                required="true"
+                                                onchange="shift4Setup.handleChangeText(event)"
+                                                onfocus="shift4Setup.handleFocusSelectText(event)"
+                                            />
+                                            <div class="slds-text-color_error slds-hide"></div>
+                                        </div>
+                                    </div>
+    
+    
+                                    <div class="slds-grid slds-grid_vertical-align-center slds-gutters_direct-xx-small slds-var-m-top_small">
+                                        <div class="slds-col">
+    
+                                                <div
+                                                    id="shift4_testConnectorStatus"
+                                                    class="slds-scoped-notification slds-scoped-notification_light slds-grid slds-grid_align-center slds-grid_vertical-align-center slds-var-p-vertical_x-small"
+                                                    role="status">
+                                                    <div class="spinner slds-hide">
+                                                        <isinclude template="components/slds/spinner" />
+                                                    </div>
+                                                    <div class="slds-col slds-no-flex">
+                                                        <span id="testAuthAssist" class="slds-assistive-text">
+                                                        </span>
+                                                            <iscomment>
+                                                                "Connected" or "Not Connected"
+                                                            </iscomment>
+                                                        <span id="testAuthIcon" class="slds-icon_container slds-m-right_x-small">
+                                                            <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+                                                                <use xlink:href="${symbols}#success"></use>
+                                                            </svg>
+                                                        </span>
+                                                    </div>
+                                                    <div class="slds-col">
+                                                        <p id="testAuthLabel">
+                                                            <iscomment>
+                                                                "Connected" or "Not Connected"
+                                                            </iscomment>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="slds-col slds-no-flex">
+                                                <button class="slds-button" id="shift4_testModeAuth" data-mode="test" onclick="shift4Setup.handleClickAuthButton(event)">
+                                                        <iscomment>
+                                                            "Connect" or "Disconnect"
+                                                        </iscomment>
+                                                </button>
+                                            </div>
+                                    </div>
+
+                                    <div id="shift4_testDisconnectConfirmationBox" class="shift4-disconnect-confirmation slds-is-absolute slds-hide">
+                                        <p class="slds-p-bottom_medium">
+                                            ${Resource.msg('setup.outbound.test.disconnect.confirmation', 'bm_shift4', '')}
+                                        </p>
+                                        <div class=shift4-authorization-actions>
+                                            <button class="slds-button" data-mode="test" onclick="shift4Setup.handleCancelDisconnect(event)">
+                                                ${Resource.msg('button.label.cancel', 'bm_shift4', '')}
+                                            </button>
+                                            <button class="slds-button slds-button_destructive" data-mode="test" onclick="shift4Setup.handleConfirmDisconnect(event)">
+                                                ${Resource.msg('button.label.disconnect', 'bm_shift4', '')}
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="slds-border_top slds-p-top_large slds-m-top_large slds-text-align_left shift4-section">
+                                <div class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center">
+                                    <div class="slds-col">
+                                        <h2 class="slds-text-heading_small">${Resource.msg('setup.environment.title', 'bm_shift4', '')}</h2>
+                                        <div class="slds-var-m-top_xx-small">${Resource.msg('setup.environment.subtitle', 'bm_shift4', '')}</div>
+                                    </div>
+                                    <div class="slds-col slds-grow-none">
+
+                                        <fieldset id="shift4payments__environment" class="slds-form-element">
+                                            <div class="slds-form-element__control">
+                                            <div class="slds-radio_button-group">
+                                                <span class="slds-button slds-radio_button">
+                                                    <input type="radio" name="shift4payments__environment" id="shift4payments__LIVE" value="Live" onclick="shift4Setup.handleChangeRadio(event)" />
+                                                    <label class="slds-radio_button__label" for="shift4payments__LIVE">
+                                                        <span class="slds-radio_faux">${Resource.msg('setup.environment.live.title', 'bm_shift4', '')}</span>
+                                                    </label>
+                                                </span>
+                                                <span class="slds-button slds-radio_button">
+                                                    <input type="radio" name="shift4payments__environment" id="shift4payments__TEST" value="Test" onclick="shift4Setup.handleChangeRadio(event)" />
+                                                    <label class="slds-radio_button__label" for="shift4payments__TEST">
+                                                        <span class="slds-radio_faux">${Resource.msg('setup.environment.test.title', 'bm_shift4', '')}</span>
+                                                    </label>
+                                                </span>
+                                            </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="slds-border_top slds-p-top_large slds-m-top_large slds-text-align_left shift4-section">
+                                <div class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center">
+                                    <div class="slds-col">
+                                        <h2 class="slds-text-heading_small">${Resource.msg('setup.capture.title', 'bm_shift4', '')}</h2>
+                                        <div class="slds-var-m-top_xx-small">${Resource.msg('setup.capture.subtitle', 'bm_shift4', '')}</div>
+                                    </div>
+                                    <div class="slds-col slds-grow-none">
+                                        <div class="slds-form-element">
+                                            <label class="slds-checkbox_toggle slds-grid">
+                                                <input
+                                                    type="checkbox"
+                                                    id="shift4payments__captureImmediately"
+                                                    name="shift4payments__captureImmediately"
+                                                    aria-describedby="captureImmediately"
+                                                    onclick="shift4Setup.handleClickCheckbox(event)"
+                                                />
+                                                <span id="captureImmediately" class="slds-checkbox_faux_container" aria-live="assertive">
+                                                    <span class="slds-checkbox_faux"></span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="slds-border_top slds-p-top_large slds-m-top_large slds-text-align_right shift4-section">
+                                <div>
+                                    <button id="shift4_apply" class="slds-button slds-button_brand" onclick="shift4Setup.handleClickApply()">
+                                        ${Resource.msg('button.label.apply', 'bm_shift4', '')}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-text-align_left slds-p-top_medium slds-wrap shift4-footer">
+                <div class="">
+                    <h2 class="slds-text-heading_small">
+                        ${Resource.msg('setup.about.title', 'bm_shift4', '')}
+                    </h2>
+                    <p class="slds-m-top_xx-small">
+                        ${Resource.msg('setup.about.subtitle', 'bm_shift4', '')}
+                    </p>
+                    <ul class="slds-var-m-top_x-small">
+                        <li>
+                            <a target="_blank" rel="noopener noreferrer" href="https://shift4.com">
+                                ${Resource.msg('setup.about.links.home', 'bm_shift4', '')}
+                            </a>
+                        </li>
+                        <li>
+                            <a target="_blank" rel="noopener noreferrer" href="https://shift4.com">
+                                ${Resource.msg('setup.about.links.support', 'bm_shift4', '')}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="slds-text-align_left slds-p-top_medium slds-wrap shift4-footer">
+                <div class="">
+                    <h2 class="slds-text-heading_small">
+                        ${Resource.msg('setup.about.help.title', 'bm_shift4', '')}
+                    </h2>
+                    <p class="slds-m-top_xx-small">
+                        ${Resource.msg('setup.about.help.subtitle', 'bm_shift4', '')}
+                    </p>
+                    <ul class="slds-var-m-top_x-small">
+                        <li>
+                            <a target="_blank" rel="noopener noreferrer" href="https://docs.google.com/document/d/1m-aWBQL6PtzE4fIgOxH7cunJb5TaDIXqFAksUs27OXA/edit">
+                                ${Resource.msg('setup.about.help.documentation', 'bm_shift4', '')}
+                            </a>
+                        </li>
+                        <li>
+                            <a target="_blank" rel="noopener noreferrer" href="mailto:sfcc@shift4.com">
+                                ${Resource.msg('setup.about.help.email', 'bm_shift4', '')}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</isdecorate>

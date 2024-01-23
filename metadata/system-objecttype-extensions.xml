@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata xmlns="http://www.demandware.com/xml/impex/metadata/2006-10-31">
+    <type-extension type-id="SitePreferences">
+        <custom-attribute-definitions>
+            <attribute-definition attribute-id="shift4payments__applePayVerificationString">
+                <display-name xml:lang="x-default">Shift4 Apple Pay Verification String</display-name>
+                <type>text</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>true</externally-managed-flag>
+                <field-length>4096</field-length>
+            </attribute-definition>
+            <attribute-definition attribute-id="shift4payments__captureImmediately">
+                <display-name xml:lang="x-default">Shift4 - Capture Funds Immediately</display-name>
+                <description xml:lang="x-default">When enabled, funds are captured immediately when a charge is created.</description>
+                <type>boolean</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>true</externally-managed-flag>
+                <default-value>false</default-value>
+            </attribute-definition>
+            <attribute-definition attribute-id="shift4payments__environment">
+                <display-name xml:lang="x-default">Shift4 Environment</display-name>
+                <description xml:lang="x-default">Point your Shift4 integration to either your testing or live environment.</description>
+                <type>string</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>true</externally-managed-flag>
+                <min-length>0</min-length>
+                <field-length>255</field-length>
+                <regex>(Test|Live)</regex>
+                <default-value>Test</default-value>
+            </attribute-definition>
+            <attribute-definition attribute-id="shift4payments__livePublicKey">
+                <display-name xml:lang="x-default">Shift4 Live Public Key</display-name>
+                <description xml:lang="x-default">Your Shift4 live mode public key, which may be found in your Shift4 account under "Account Settings &gt; API Keys"</description>
+                <type>string</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>true</externally-managed-flag>
+                <min-length>10</min-length>
+                <field-length>255</field-length>
+                <regex>(pk_live_).*</regex>
+            </attribute-definition>
+            <attribute-definition attribute-id="shift4payments__liveSecretKey">
+                <display-name xml:lang="x-default">Shift4 Live Secret Key</display-name>
+                <description xml:lang="x-default">Your Shift4 live mode secret key, which may be found in your Shift4 account under "Account Settings &gt; API Keys"</description>
+                <type>password</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>true</externally-managed-flag>
+                <field-length>255</field-length>
+            </attribute-definition>
+            <attribute-definition attribute-id="shift4payments__testPublicKey">
+                <display-name xml:lang="x-default">Shift4 Test Public Key</display-name>
+                <description xml:lang="x-default">Your Shift4 test mode public key, which may be found in your Shift4 account under "Account Settings &gt; API Keys"</description>
+                <type>string</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>true</externally-managed-flag>
+                <min-length>10</min-length>
+                <field-length>255</field-length>
+                <regex>(pk_test_).*</regex>
+            </attribute-definition>
+            <attribute-definition attribute-id="shift4payments__testSecretKey">
+                <display-name xml:lang="x-default">Shift4 Test Secret Key</display-name>
+                <description xml:lang="x-default">Your Shift4 test mode secret key, which may be found in your Shift4 account under "Account Settings &gt; API Keys"</description>
+                <type>password</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>true</externally-managed-flag>
+                <field-length>255</field-length>
+            </attribute-definition>
+        </custom-attribute-definitions>
+        <group-definitions>
+            <attribute-group group-id="Shift4">
+                <display-name xml:lang="x-default">Shift4 Setup Data</display-name>
+                <attribute attribute-id="shift4payments__applePayVerificationString"/>
+                <attribute attribute-id="shift4payments__captureImmediately"/>
+                <attribute attribute-id="shift4payments__environment"/>
+                <attribute attribute-id="shift4payments__liveSecretKey"/>
+                <attribute attribute-id="shift4payments__livePublicKey"/>
+                <attribute attribute-id="shift4payments__testSecretKey"/>
+                <attribute attribute-id="shift4payments__testPublicKey"/>
+            </attribute-group>
+        </group-definitions>
+    </type-extension>
+
+    <type-extension type-id="PaymentTransaction">
+        <custom-attribute-definitions>
+            <attribute-definition attribute-id="shift4payments__chargeId">
+                <display-name xml:lang="x-default">Shift4 Charge ID</display-name>
+                <type>string</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>true</externally-managed-flag>
+                <min-length>0</min-length>
+                <field-length>255</field-length>
+                <regex>(char_)*</regex>
+            </attribute-definition>
+        </custom-attribute-definitions>
+        <group-definitions>
+            <attribute-group group-id="Shift4">
+                <display-name xml:lang="x-default">Shift4 Attributes</display-name>
+                <attribute attribute-id="shift4payments__chargeId"/>
+            </attribute-group>
+        </group-definitions>
+    </type-extension>
+
+    <type-extension type-id="Profile">
+        <custom-attribute-definitions>
+            <attribute-definition attribute-id="shift4payments__customerId">
+                <display-name xml:lang="x-default">Shift4 Customer ID</display-name>
+                <type>string</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>true</externally-managed-flag>
+                <min-length>0</min-length>
+                <field-length>255</field-length>
+                <regex>(cust_)*</regex>
+            </attribute-definition>
+        </custom-attribute-definitions>
+        <group-definitions>
+            <attribute-group group-id="Shift4">
+                <display-name xml:lang="x-default">Shift4 Attributes</display-name>
+                <attribute attribute-id="shift4payments__customerId"/>
+            </attribute-group>
+        </group-definitions>
+    </type-extension>
+</metadata>

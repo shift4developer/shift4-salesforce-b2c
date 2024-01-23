@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<extensions xmlns="http://www.demandware.com/xml/bmmodules/2007-12-11"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.demandware.com/xml/bmmodules/2007-12-11 bmext.xsd">
+    <menuitem id="shift4" position="9000" site="true">
+        <name xml:lang="x-default">Shift4</name>
+        <short_description xml:lang="x-default">Shift4 Payment Processing</short_description>
+        <description xml:lang="x-default">Shift4 Payment Processing</description>
+        <icon>icons/shift4-icon.gif</icon>
+    </menuitem>
+    <menuaction id="shift4_setup" menupath="shift4" position="001" site="true">
+        <name xml:lang="x-default">Setup</name>
+        <short_description xml:lang="x-default">Shift4 Setup Assistant</short_description>
+        <description xml:lang="x-default">Shift4 Setup Assistant</description>
+        <exec pipeline="Shift4SetupController" node="Show"/>
+        <sub-pipelines>
+            <pipeline name="Shift4SetupController-Show"/>
+            <pipeline name="Shift4SetupController-Save"/>
+            <pipeline name="Shift4SetupController-AuthenticateOutbound"/>
+            <pipeline name="Shift4SetupController-DeauthenticateOutbound"/>
+        </sub-pipelines>
+        <parameters>
+        </parameters>
+        <permissions>
+        </permissions>
+        <icon>icons/setup-gear.gif</icon>
+    </menuaction>
+</extensions>
