@@ -1,38 +1,23 @@
 # Shift4 Cartridge for Salesforce B2C
 
-[Shift4](https://www.shift4.com/) is a payment processor. This cartridge enables B2C merchants to use Shift4 as their payment provider for the following payment methods:
+Through the integration of [Shift4's](https://www.shift4.com/) B2C Cartridge, merchants utilizing B2C Storefronts can securely process all transactions, leveraging the core capabilities of Shift4 for payment processing.  This cartridge provides support for both the SiteGenesis (SG) and Storefront Reference Architecture (SFRA) integration types.
 
--   Credit/Debit Card
--   Apple Pay
 
-## Prerequisites
+Features:
+Secure Checkout: Deliver a frictionless payment experience to your customers using Credit, Debit, or Apple Pay methods.
+Store Card: Securely vault and tokenize sensitive card information allowing loyal customers to expedite checkout for future purchases.
+Express checkout with Apple Pay:  Enable Apple Pay users to expedite their checkout experience using a streamlined and secure payment method they are familiar with. 
 
--   Ensure you have [Node.js](https://nodejs.org/en/download) installed on your system.
+## Requirements
 
-## Deployment
+- Shift4 Developer Account - In order to test your store in a sandbox you will need to register for a Shift4 developer account to process your transactions against. 
+- Shift4 Live Account - It is recommended that you email sfcc@shift4.com upon evaluating the Shift4 plugin and deciding to move forward with our product. In this email highlight your intentions and a memberof our team will coordinate commercial terms and guide you through the risk and onboarding processes. 
 
-1. Execute this command in a terminal to install all dependencies, connect to your B2C instance, and upload the cartridges to your B2C instance:
+## Configuring, Deploying, and Installing the Plugin
 
-```sh
-npm install
+Full instructions for configuring, deploying, and installing the Shift4 Salesforce B2C Plugin can be found in our [online documentation](https://dev.shift4.com/docs). These comprehensive steps will walk you through the entire process of obtaining our plugin to completing a test transaction.
 
-# You will be prompted for your B2C credentials; have them ready to go
-```
 
-2. Follow the instructions outlined in the [installation & configuration guide](https://docs.google.com/document/d/1m-aWBQL6PtzE4fIgOxH7cunJb5TaDIXqFAksUs27OXA/view) to complete the installation.
+## Support & Feedback
 
-## Additional Commands
-
-```sh
-# Change your B2C user / instance / code version
-npm run configure
-```
-
-```sh
-# Re-upload all Shift4 cartridges to your B2C instance
-npm run uploadCartridge
-```
-
-## Development
-
-Please see the [developer guide](https://docs.google.com/document/d/1LaO-Rp9kBsUwJL1IU7YvKgG2S1IFqy4-a1w7_jhaa8U/view) for data models, feature flows, and other information.
+For questions or feedback in regards to troubleshooting, commercial discussions, or other Salesforce B2C Plugin related items please communicate your inquiry to sfcc@shift4.com.
