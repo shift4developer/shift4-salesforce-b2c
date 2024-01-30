@@ -4,9 +4,9 @@ Through the integration of [Shift4's](https://www.shift4.com/) B2C Cartridge, me
 
 
 Features:
-Secure Checkout: Deliver a frictionless payment experience to your customers using Credit, Debit, or Apple Pay methods.
-Store Card: Securely vault and tokenize sensitive card information allowing loyal customers to expedite checkout for future purchases.
-Express checkout with Apple Pay:  Enable Apple Pay users to expedite their checkout experience using a streamlined and secure payment method they are familiar with. 
+- Secure Checkout: Deliver a frictionless payment experience to your customers using Credit, Debit, or Apple Pay methods.
+- Store Card: Securely vault and tokenize sensitive card information allowing loyal customers to expedite checkout for future purchases.
+- Express checkout with Apple Pay:  Enable Apple Pay users to expedite their checkout experience using a streamlined and secure payment method they are familiar with. 
 
 ## Requirements
 
