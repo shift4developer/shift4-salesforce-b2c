@@ -15,7 +15,7 @@ Features:
 
 ## Configuring, Deploying, and Installing the Plugin
 
-Full instructions for configuring, deploying, and installing the Shift4 Salesforce B2C Plugin can be found in our [online documentation](https://dev.shift4.com/docs/salesforce-commerce-cloud). These comprehensive steps will walk you through the entire process of obtaining our plugin to completing a test transaction.
+Full instructions for configuring, deploying, and installing the Shift4 Salesforce B2C Plugin can be found in our [online documentation](https://dev.shift4.com/docs/plugins/salesforce-commerce-cloud/). These comprehensive steps will walk you through the entire process of obtaining our plugin to completing a test transaction.
 
 
 ## Support & Feedback
